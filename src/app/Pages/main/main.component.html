@@ -1,14 +1,24 @@
 <div class="wrapper">
-  <img src="./assets/images/background.png" class="back">
+  <img [src]="isMobile ? './assets/images/background-mob.png' : './assets/images/background.png'" class="back">
   <div class="header">
-    <img src="./assets/images/logo.png" class="logo">
+    <img [src]="isMobile ? './assets/images/logo-mob.png' : './assets/images/logo.png'" class="logo">
   </div>
   <div class="body">
     <div class="content">
       <div class="slider">
+        <img src="./assets/images/nfts/image1.png" class="nonVisibleSlide">
         <div class="slide" *ngFor="let slide of slides" [ngStyle]="{background: 'url('+slide.image+')'}" [ngClass]="slide.active ? 'active' : ''"></div>
       </div>
       <div class="info">
+        <ng-container *ngIf="isMobile">
+          <div class="bottom-text" style="margin-bottom: 15px;">
+            <div class="bottom-text-after">
+              <p>Game Info</p>
+              <img src="./assets/images/arrow.png" class="arrow">
+            </div>
+          </div>
+        </ng-container>
+
         <div class="text">The gameplay is set on the planet Cyrinx, once home to a powerful ancient civilization, and now—the alien battlefield. GENESIS NFT avatars are based on the main character of the LORE, and consist of 2500 randomly generated NFTs that can be used in and out of the game in 2023.</div>
         <div class="text">WarQube is a cooperative 3D video game in a mix of Tower Defense, Isometric Shooter and MOBA genres.</div>
 
@@ -18,7 +28,15 @@
               <p>look more at</p>
             </div>
           </div>
-          <img src="./assets/svg/openSea.svg" class="opensea">
+          <img [src]="isMobile ? './assets/images/OpenSea-mob.png' : './assets/images/OpenSea.png'" class="opensea">
+          <!-- <div class="opensea">
+            <img src="./assets/images/op-logo.png" class="op-logo">
+            <div class="bottom-text">
+              <div class="bottom-text-after op">
+                <p>OpenSea</p>
+              </div>
+            </div>
+          </div> -->
         </div>
         <div class="primary-btn desc">Mint now</div>
       </div>

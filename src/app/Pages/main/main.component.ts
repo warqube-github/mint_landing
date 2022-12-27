@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 
 interface ISlide {
   image: string;
@@ -10,7 +10,7 @@ interface ISlide {
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
   slideInterval: any;
 
@@ -21,9 +21,16 @@ export class MainComponent implements OnInit {
     { image: './assets/images/nfts/image1.png', active: false },
   ];
 
+  isMobile: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+
+    if (window.innerWidth < 500) {
+      this.isMobile = true;
+    }
+
     this.slideInterval = setInterval(() => {
       let image = this.slides.filter(s => s.active)[0];
       if (image) {
@@ -35,6 +42,11 @@ export class MainComponent implements OnInit {
         this.slides[index + 1].active = true;
       }
     }, 3000);
+  }
+
+  @HostListener('window:beforeunload')
+  ngOnDestroy(): void {
+    clearInterval(this.slideInterval); 
   }
 
 }
