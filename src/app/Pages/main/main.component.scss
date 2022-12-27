@@ -152,6 +152,10 @@
     width: 100%;
     margin-bottom: 45px;
 
+    .socials {
+      display: none;
+    }
+
     .menu {
       display: flex;
 
@@ -276,7 +280,7 @@
       }
 
       .socials {
-
+        display: flex;
       }
     }
   }
