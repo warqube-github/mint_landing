@@ -1,0 +1,25 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper-social {
+  margin: 45px 0;
+
+  a {
+    margin-right: 20px;
+  }
+  
+  svg {
+    user-select: none;
+
+    path {
+      fill: white;
+      transition: all .2s ease;
+
+      &:hover {
+        fill: #23BDEE;
+      }
+    }
+  }
+}

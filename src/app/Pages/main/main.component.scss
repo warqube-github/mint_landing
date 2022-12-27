@@ -212,6 +212,12 @@
 
 @media only screen and (max-width: 500px) {
   .wrapper {
+
+    .back {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     
     .header {
       height: auto;
@@ -265,7 +271,13 @@
     }
 
     .footer {
-      display: none;
+      .menu {
+        display: none;
+      }
+
+      .socials {
+
+      }
     }
   }
 
