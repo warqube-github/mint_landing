@@ -14,9 +14,10 @@ body {
 
 body {
   margin: 0;
-  font-family: 'Futura PT' !important;
+  background-color: #001428;
   font-size: 14px;
   color: white;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
