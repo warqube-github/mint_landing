@@ -11,16 +11,19 @@
       </div>
       <div class="info">
         <ng-container *ngIf="isMobile">
-          <div class="bottom-text" style="margin-bottom: 15px;">
+          <div class="bottom-text" style="margin-bottom: 15px;" (click)="infoOpen = !infoOpen">
             <div class="bottom-text-after">
               <p>GENESIS NFT INFO</p>
-              <img src="./assets/images/arrow.png" class="arrow">
+              <img src="./assets/images/arrow.png" class="arrow" [ngClass]="{'close': !infoOpen}">
             </div>
           </div>
         </ng-container>
 
-        <div class="text">WarQube Genesis NFT Collection consist of 2500 randomly generated exclusive NFT avatars of the main game character. Owners will have access to a wide range of additional gaming and earning rewards.</div>
-        <div class="text">It will be possible to get all the benefits and play in one of the expected Play-To-Earn games with a unique combination of Tower Defense, Isometric Shooter and MOBA genres already in 2023.</div>
+        <ng-container *ngIf="infoOpen">
+          <div class="text">WarQube Genesis NFT Collection consist of 2500 randomly generated exclusive NFT avatars of the main game character. Owners will have access to a wide range of additional gaming and earning rewards.</div>
+          <div class="text">It will be possible to get all the benefits and play in one of the expected Play-To-Earn games with a unique combination of Tower Defense, Isometric Shooter and MOBA genres already in 2023.</div>
+        </ng-container>
+        
 
         <div class="container">
           <div class="bottom-text">

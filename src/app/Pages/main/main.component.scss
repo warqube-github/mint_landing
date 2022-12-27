@@ -267,6 +267,11 @@
                 width: 15px;
                 height: 8.27px;
                 margin-left: 5px;
+                transition: all .2s ease;
+
+                &.close {
+                  transform: rotate(-90deg);
+                }
               }
             }
           }

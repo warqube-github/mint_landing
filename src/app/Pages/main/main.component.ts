@@ -23,6 +23,8 @@ export class MainComponent implements OnInit, OnDestroy {
 
   isMobile: boolean = false;
 
+  infoOpen: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
