@@ -16,9 +16,9 @@ export class MainComponent implements OnInit, OnDestroy {
 
   slides: ISlide[] = [
     { image: './assets/images/nfts/image1.png', active: true },
-    { image: './assets/images/nfts/image1.png', active: false },
-    { image: './assets/images/nfts/image1.png', active: false },
-    { image: './assets/images/nfts/image1.png', active: false },
+    { image: './assets/images/nfts/image2.png', active: false },
+    { image: './assets/images/nfts/image3.png', active: false },
+    { image: './assets/images/nfts/image4.png', active: false },
   ];
 
   isMobile: boolean = false;
