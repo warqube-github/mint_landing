@@ -368,6 +368,17 @@
           padding: 0;
           align-items: center;
 
+          .startMintContainer {
+
+            .textTimer {
+              font-size: 28px;
+            }
+
+            .row {
+              justify-content: center;
+            }
+          }
+
           .container {
             justify-content: space-evenly;
             margin-bottom: 45px;
