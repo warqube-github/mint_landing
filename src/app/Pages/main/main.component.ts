@@ -25,8 +25,8 @@ export class MainComponent implements OnInit, OnDestroy {
 
   infoOpen: boolean = true;
 
-  percent: number = 82;
-  mintCount: number = 1678;
+  percent: number = 0;
+  mintCount: number = 0;
   maxMint: number = 2500;
 
   constructor() { }
