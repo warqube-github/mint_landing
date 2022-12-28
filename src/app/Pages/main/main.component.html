@@ -41,6 +41,24 @@
             </div>
           </div> -->
         </div>
+
+        <div class="progress-bar">
+          <div class="top">
+            <div class="left text text-blue">
+              <p>Total minted</p>
+            </div>
+            <div class="right">
+              <div class="percent text text-white"><p>{{percent}}%</p></div>
+              <div class="mintInfo text text-blue"><p>1678/2500</p></div>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="line">
+              <div class="inner" [ngStyle]="{'width': percent + '%'}"></div>
+            </div>
+          </div>
+        </div>
+
         <div class="primary-btn desc">Mint now</div>
       </div>
     </div>

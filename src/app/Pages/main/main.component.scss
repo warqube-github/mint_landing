@@ -140,6 +140,77 @@
           }
         }
 
+        .progress-bar {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          margin-top: 10px;
+
+          .top {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .text {
+              position: relative;
+              font-family: 'Orbitron';
+              font-weight: 600;
+              font-size: 15px;
+              text-transform: uppercase;
+              margin: 0;
+
+              background-position: center;
+              background-clip: text;
+              color: transparent;
+              background-repeat: repeat;
+              z-index: 1;
+
+              &-blue {
+                background-image: url(~src/assets/images/back-blue.png);
+              }
+
+              &-white {
+                background-image: url(~src/assets/images/back-white.png);
+              }
+            }
+
+            .left {
+              position: relative;
+            }
+
+            .right {
+              display: flex;
+
+              .percent {
+                margin-right: 20px;
+              }
+            }
+          }
+
+          .bottom {
+            .line {
+              width: 100%;
+              position: relative;
+              background: url('~src/assets/images/back-gray.png');
+              background-size: cover;
+              height: 6px;
+              border-radius: 10px;
+
+              .inner {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                // width: 50%;
+                background: url('~src/assets/images/back-blue.png');
+                background-size: cover;
+                border-radius: 10px;
+              }
+            }
+          }
+        }
+
       }
     }
   }
@@ -274,6 +345,10 @@
                 }
               }
             }
+          }
+
+          .progress-bar {
+            margin-bottom: 30px;
           }
         }
       }

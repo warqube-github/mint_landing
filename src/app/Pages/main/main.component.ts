@@ -25,6 +25,8 @@ export class MainComponent implements OnInit, OnDestroy {
 
   infoOpen: boolean = true;
 
+  percent: number = 82;
+
   constructor() { }
 
   ngOnInit(): void {
