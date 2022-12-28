@@ -24,13 +24,43 @@
         </ng-container>
         
 
-        <div class="container">
+        <div class="container" *ngIf="isMobile">
           <div class="bottom-text">
             <div class="bottom-text-after">
               <p>look more at</p>
             </div>
           </div>
           <img src="./assets/svg/openSea.svg" class="opensea">
+        </div>
+
+        <div class="startMintContainer" *ngIf="!isMobile">
+          <div class="col">
+            <div class="row">
+              <div class="textTimer textTimer-blue"><p>Mint Started</p></div>
+            </div>
+            <div class="row">
+              <div class="col" style="margin-right: 20px;">
+                <div class="row textTimer textTimer-white" style="font-size: 22px; margin-bottom: 5px;">{{mintTime.hour}}</div>
+                <div class="row textTimer textTimer-white" style="font-size: 10px;">hours</div>
+              </div>
+              <div class="col" style="margin-right: 20px;">
+                <div class="row textTimer textTimer-white" style="font-size: 22px; margin-bottom: 5px;">{{mintTime.minutes}}</div>
+                <div class="row textTimer textTimer-white" style="font-size: 10px;">Minutes</div>
+              </div>
+              <div class="col">
+                <div class="row textTimer textTimer-white" style="font-size: 22px; margin-bottom: 5px;">{{mintTime.seconds}}</div>
+                <div class="row textTimer textTimer-white" style="font-size: 10px;">Seconds</div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="textTimer textTimer-blue"><p>look more at</p></div>
+            </div>
+            <div class="row end">
+              <img src="./assets/svg/openSea.svg" style="width: 133px;">
+            </div>
+          </div>
         </div>
 
         <div class="container-progress">

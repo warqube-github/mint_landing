@@ -86,6 +86,48 @@
           margin-bottom: 30px;
         }
 
+        .startMintContainer {
+          display: flex;
+          justify-content: space-between;
+
+          .col {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .row {
+            display: flex;
+            margin-bottom: 10px;
+
+            &.end {
+              justify-content: flex-end;
+            }
+          }
+
+          .textTimer {
+            position: relative;
+            font-family: 'Orbitron';
+            font-weight: 600;
+            font-size: 20px;
+            text-transform: uppercase;
+            margin: 0;
+
+            background-position: center;
+            background-clip: text;
+            color: transparent;
+            background-repeat: repeat;
+            z-index: 1;
+
+            &-blue {
+              background-image: url(~src/assets/images/back-blue.png);
+            }
+
+            &-white {
+              background-image: url(~src/assets/images/back-white.png);
+            }
+          }
+        }
+
         .container {
           display: flex;
           width: 100%;

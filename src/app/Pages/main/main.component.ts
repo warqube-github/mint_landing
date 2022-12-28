@@ -1,8 +1,15 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 interface ISlide {
   image: string;
   active?: boolean;
+}
+
+interface ITime {
+  hour: string,
+  minutes: string,
+  seconds: string
 }
 
 @Component({
@@ -29,9 +36,21 @@ export class MainComponent implements OnInit, OnDestroy {
   mintCount: number = 0;
   maxMint: number = 2500;
 
+  timeInterval: any;
+  mintTime: ITime = {
+    hour: '',
+    minutes: '',
+    seconds: ''
+  };
+
   constructor() { }
 
   ngOnInit(): void {
+    this.startMintCalculate();
+    this.timeInterval = setInterval(() => {
+      this.startMintCalculate();
+    }, 1000);
+
     this.mintCalculate();
 
     if (window.innerWidth < 500) {
@@ -55,9 +74,23 @@ export class MainComponent implements OnInit, OnDestroy {
     this.percent = Number(((this.mintCount / this.maxMint) * 100).toFixed(2));
   }
 
+  startMintCalculate() {
+    let startMint = new Date(2022, 11, 29, 14, 0);
+
+    let diffHour = moment(moment(startMint).diff(moment.utc())).format('HH');;
+    let diffMinutes = moment(moment(startMint).diff(moment.utc())).format('mm');
+    let diffSeconds = moment(moment(startMint).diff(moment.utc())).format('ss');
+    this.mintTime = {
+      hour: diffHour,
+      minutes: diffMinutes,
+      seconds: diffSeconds
+    };
+  }
+
   @HostListener('window:beforeunload')
   ngOnDestroy(): void {
-    clearInterval(this.slideInterval); 
+    clearInterval(this.slideInterval);
+    clearInterval(this.timeInterval);
   }
 
 }
