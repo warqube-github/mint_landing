@@ -26,10 +26,13 @@ export class MainComponent implements OnInit, OnDestroy {
   infoOpen: boolean = true;
 
   percent: number = 82;
+  mintCount: number = 1678;
+  maxMint: number = 2500;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.mintCalculate();
 
     if (window.innerWidth < 500) {
       this.isMobile = true;
@@ -46,6 +49,10 @@ export class MainComponent implements OnInit, OnDestroy {
         this.slides[index + 1].active = true;
       }
     }, 3000);
+  }
+
+  mintCalculate() {
+    this.percent = Number(((this.mintCount / this.maxMint) * 100).toFixed(2));
   }
 
   @HostListener('window:beforeunload')
