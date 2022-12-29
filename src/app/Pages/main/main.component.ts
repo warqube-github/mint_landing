@@ -43,9 +43,15 @@ export class MainComponent implements OnInit, OnDestroy {
     seconds: ''
   };
 
+  mintBtn = 'Mint now';
+  mintIsStarted: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+
+    // let startMint = new Date(2022, 11, 29, 3, 50);
+
     this.startMintCalculate();
     this.timeInterval = setInterval(() => {
       this.startMintCalculate();
@@ -75,7 +81,15 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   startMintCalculate() {
+    // let startMint = new Date(2022, 11, 29, 4, 8);
     let startMint = new Date(2022, 11, 29, 14, 0);
+    let endTimer = new Date(Number(moment.utc().format('YYYY')), Number(moment.utc().format('MM')) - 1, Number(moment.utc().format('DD')), Number(moment.utc().format('HH')), Number(moment.utc().format('mm'))).getTime();
+
+
+    if (endTimer >= (startMint.getTime())) {
+      clearInterval(this.timeInterval);
+      this.startMint();
+    }
 
     let diffHour = moment(moment(startMint).diff(moment.utc())).format('HH');;
     let diffMinutes = moment(moment(startMint).diff(moment.utc())).format('mm');
@@ -85,6 +99,11 @@ export class MainComponent implements OnInit, OnDestroy {
       minutes: diffMinutes,
       seconds: diffSeconds
     };
+  }
+
+  startMint() {
+    this.mintBtn = 'mint is live';
+    this.mintIsStarted = true;
   }
 
   @HostListener('window:beforeunload')

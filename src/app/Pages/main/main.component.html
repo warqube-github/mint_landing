@@ -33,7 +33,16 @@
           <img src="./assets/svg/openSea.svg" class="opensea">
         </div>
 
-        <div class="startMintContainer" *ngIf="!isMobile">
+        <div class="container" *ngIf="!isMobile && mintIsStarted">
+          <div class="bottom-text">
+            <div class="bottom-text-after">
+              <p>look more at</p>
+            </div>
+          </div>
+          <img src="./assets/svg/openSea.svg" class="opensea">
+        </div>
+
+        <div class="startMintContainer" *ngIf="!isMobile && !mintIsStarted">
           <div class="col">
             <div class="row">
               <div class="textTimer textTimer-blue"><p>Mint Started</p></div>
@@ -63,7 +72,7 @@
           </div>
         </div>
 
-        <div class="startMintContainer" *ngIf="isMobile">
+        <div class="startMintContainer" *ngIf="isMobile && !mintIsStarted">
           <div class="col">
             <div class="row">
               <div class="textTimer textTimer-blue"><p>Mint Started</p></div>
@@ -103,8 +112,9 @@
             </div>
           </div>
           
-          <div class="primary-btn desc">Mint now</div>
+          <div class="primary-btn">{{mintBtn}}</div>
         </div>
+
       </div>
     </div>
   </div>

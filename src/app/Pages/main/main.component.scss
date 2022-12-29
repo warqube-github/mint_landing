@@ -319,14 +319,12 @@
 
   background-image: url('~src/assets/images/back-blue.png');
 
-  &.desc {
-    user-select: none;
-    cursor: pointer;
-    transition: all .2s ease;
+  user-select: none;
+  cursor: pointer;
+  transition: all .2s ease;
 
-    &:hover {
-      opacity: 0.8;
-    }
+  &:hover {
+    opacity: 0.8;
   }
 }
 
@@ -427,5 +425,6 @@
     position: relative;
     bottom: 0;
     width: 100%;
+    cursor: default;
   }
 }
