@@ -1,6 +1,8 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
+declare let testFunc: any;
+
 interface ISlide {
   image: string;
   active?: boolean;
@@ -50,7 +52,11 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // let startMint = new Date(2022, 11, 29, 3, 50);
+    // try {
+    //   testFunc();
+    // } catch (error) {
+    //   console.log('Error', error);
+    // }
 
     this.startMintCalculate();
     this.timeInterval = setInterval(() => {
