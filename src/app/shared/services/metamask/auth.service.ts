@@ -25,9 +25,9 @@ export class AuthService {
   ) {
     
     if (window.ethereum === undefined) {
-      this.commonService.showError(
-        'Non-Ethereum browser detected. Connect MetaMask'
-      );
+      // this.commonService.showError(
+      //   'Non-Ethereum browser detected. Please use Wallet Connect.'
+      // );
     } else {
       window.web3 = window.web3.currentProvider;
       window.web3 = new window.Web3(window.ethereum);
@@ -206,7 +206,7 @@ export class AuthService {
     obj[1] = environment.infuraURL + environment.infuraId;
     this.configWallet = {
       infuraId: environment.infuraId,
-      rpc: this.rpc,
+      rpc: obj,
       chainId: 1
     }
 
