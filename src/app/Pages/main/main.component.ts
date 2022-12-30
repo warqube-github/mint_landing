@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/services/metamask/auth.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
@@ -48,7 +49,9 @@ export class MainComponent implements OnInit, OnDestroy {
   mintBtn = 'Mint now';
   mintIsStarted: boolean = false;
 
-  constructor() { }
+  constructor(
+    private metamaskAuth: AuthService
+  ) { }
 
   ngOnInit(): void {
 
