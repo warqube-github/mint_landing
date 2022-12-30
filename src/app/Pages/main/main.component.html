@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="walletTest">
+  <div class="walletTest" *ngIf="walletConnected">
     {{ metamask_address }}
     <p (click)="disconect()">Disconect</p>
   </div>

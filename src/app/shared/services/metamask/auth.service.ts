@@ -51,6 +51,38 @@ export class AuthService {
           }
         });
       }
+
+      let _this = this;
+      window.ethereum.on('accountsChanged', (accounts: any) => {
+        if (!this.commonService.walletUser.value.walletConnected) {
+          return;
+        }
+        if (accounts.length > 0) {
+          const walletUserObj = {
+            networkType: this.commonService.walletUser.value.networkType,
+            walletType: this.commonService.walletUser.value.walletType,
+            chainId: this.commonService.walletUser.value.chainId,
+            address: accounts[0],
+            walletConnected: true,
+          };
+          this.commonService.walletUser.next(walletUserObj);
+        } else {
+          _this.commonService.resetUser();
+          _this.commonService.showInfo('Metamask disconnected!');
+        }
+      });
+
+      window.ethereum.on('networkChanged', (networkId: number) => {
+        // Time to reload your interface with the new networkId
+        if (!this.commonService.walletUser.value.walletConnected) {
+          return;
+        }
+
+        if (networkId != 1) {
+          this.commonService.resetUser();
+          this.disconect();
+        }
+      });
     }
   }
 
@@ -168,6 +200,7 @@ export class AuthService {
     let obj: any = {};
     await this.sleep(1000);
     console.log('Disconnet', this.commonService.walletUser.value);
+    this.commonService.showInfo('Disconected!');
 
     obj[1] = environment.infuraURL + environment.infuraId;
     this.configWallet = {
