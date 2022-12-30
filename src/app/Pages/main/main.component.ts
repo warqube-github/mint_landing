@@ -1,5 +1,7 @@
+import { WalletsComponent } from './../../components/wallets/wallets.component';
 import { AuthService } from './../../shared/services/metamask/auth.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 
 declare let testFunc: any;
@@ -50,7 +52,8 @@ export class MainComponent implements OnInit, OnDestroy {
   mintIsStarted: boolean = false;
 
   constructor(
-    private metamaskAuth: AuthService
+    private metamaskAuth: AuthService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -84,6 +87,17 @@ export class MainComponent implements OnInit, OnDestroy {
       }
     }, 3000);
   }
+
+  openConnects() {
+    this.dialog.open(WalletsComponent, {
+      width: '250px',
+      height: 'auto',
+      data: {}
+    }).afterClosed().subscribe(wallet => {
+      console.log('Response Select Wallet', wallet);
+    });
+  }
+
 
   mintCalculate() {
     this.percent = Number(((this.mintCount / this.maxMint) * 100).toFixed(2));
