@@ -17,9 +17,13 @@ export class AuthService {
   network: INetwork = { name: 'Ethereum', chainId: 1, hexChainId: '0x1', networkType: 'ethereum' };
   rpc = environment.ethereumRPC;
 
+  //TODO WalletConnect
+  // WCProvider: any;
+
   constructor(
     private commonService: CommonService
   ) {
+    
     if (window.ethereum === undefined) {
       this.commonService.showError(
         'Non-Ethereum browser detected. Connect MetaMask'
@@ -193,6 +197,61 @@ export class AuthService {
             }
           });
       }
+    });
+  }
+
+  async connectWallet() {
+    let obj: any = {};
+
+    obj[1] = environment.infuraURL + environment.infuraId;
+    this.configWallet = {
+      infuraId: environment.infuraId,
+      rpc: this.rpc,
+      chainId: 1
+    }
+
+    const WalletConnectProvider = window.WalletConnectProvider.default;
+    this.ropstenProvider = new WalletConnectProvider(this.configWallet);
+
+    await this.ropstenProvider.enable();
+
+    if (this.ropstenProvider.connected) {
+      console.log('wallet connect address', this.ropstenProvider.accounts[0]);
+
+      localStorage.setItem('WalletType', 'walletConnect');
+
+      const walletUserObj = {
+        networkType: 'ethereum',
+        walletType: 'walletConnect',
+        chainId: 1,
+        address: utils.getAddress(this.ropstenProvider.accounts[0]),
+        walletConnected: true,
+      };
+
+      this.commonService.walletUser.next(walletUserObj);
+      this.commonService.showSuccsess('Login successfully');
+
+      this.subWalletConnectsEvents();
+
+    }
+
+    window.web3 = new window.Web3(this.ropstenProvider);
+  }
+
+  subWalletConnectsEvents() {
+    // Subscribe to accounts change
+    this.ropstenProvider.on("accountsChanged", (accounts: string[]) => {
+      console.log(accounts);
+    });
+
+    // Subscribe to chainId change
+    this.ropstenProvider.on("chainChanged", (chainId: number) => {
+      console.log(chainId);
+    });
+
+    // Subscribe to session disconnection
+    this.ropstenProvider.on("disconnect", (code: number, reason: string) => {
+      console.log(code, reason);
     });
   }
 

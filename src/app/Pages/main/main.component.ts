@@ -140,6 +140,11 @@ export class MainComponent implements OnInit, OnDestroy {
           }
         })
       }
+
+      //TODO WalletConnect
+      if (wallet === 'walletConnect') {
+        this.metamaskAuth.connectWallet();
+      }
     });
   }
 
