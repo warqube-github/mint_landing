@@ -3,6 +3,19 @@
   height: 100%;
 }
 
+.walletTest {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  display: flex;
+  z-index: 10;
+
+  p {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
+
 .wrapper {
   position: relative;
   flex-direction: column;

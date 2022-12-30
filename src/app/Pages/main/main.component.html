@@ -1,4 +1,8 @@
 <div class="wrapper">
+  <div class="walletTest">
+    {{ metamask_address }}
+    <p (click)="disconect()">Disconect</p>
+  </div>
   <div class="header">
     <img [src]="isMobile ? './assets/images/logo-mob.png' : './assets/images/logo.png'" class="logo">
   </div>

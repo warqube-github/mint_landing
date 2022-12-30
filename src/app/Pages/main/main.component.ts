@@ -1,6 +1,7 @@
+import { CommonService } from './../../shared/services/common/common.service';
 import { WalletsComponent } from './../../components/wallets/wallets.component';
 import { AuthService } from './../../shared/services/metamask/auth.service';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 
@@ -51,9 +52,14 @@ export class MainComponent implements OnInit, OnDestroy {
   mintBtn = 'Mint now';
   mintIsStarted: boolean = false;
 
+  metamask_address: string = '';
+  walletConnected: boolean = false;
+
   constructor(
+    private commonService: CommonService,
     private metamaskAuth: AuthService,
     private dialog: MatDialog,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -86,6 +92,22 @@ export class MainComponent implements OnInit, OnDestroy {
         this.slides[index + 1].active = true;
       }
     }, 3000);
+
+    this.commonService.walletUser.subscribe(result => {
+      if (result.chainId > 0 && result.walletConnected) {
+        this.metamask_address = result.address;
+
+        // this.ContractDetails = ContractDetails1ETH;
+        // this.TokenAbi = TokenAbi;
+
+        this.walletConnected = true;
+        this.cdr.detectChanges();
+      } else {
+        console.log('Disconect');
+        this.metamask_address = '';
+        this.walletConnected = false;
+      }
+    })
   }
 
   openConnects() {
@@ -95,7 +117,35 @@ export class MainComponent implements OnInit, OnDestroy {
       data: {}
     }).afterClosed().subscribe(wallet => {
       console.log('Response Select Wallet', wallet);
+      if (wallet === 'metamask') {
+        this.metamaskAuth.conectMetamask().then(async res => {
+          if (res.status) {
+
+            localStorage.setItem('WalletType', wallet);
+
+            const walletUserObj = {
+              networkType: 'ethereum',
+              walletType: wallet,
+              chainId: 1,
+              address: res.address,
+              walletConnected: true,
+            };
+
+            this.commonService.walletUser.next(walletUserObj);
+            this.commonService.showSuccsess('Login successfully');
+
+          } else {
+            this.commonService.resetUser();
+            this.commonService.showError(res.message);
+          }
+        })
+      }
     });
+  }
+
+  disconect() {
+    this.commonService.resetUser();
+    this.metamaskAuth.disconect();
   }
 
 
