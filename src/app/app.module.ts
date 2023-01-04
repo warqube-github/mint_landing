@@ -5,16 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './Pages/main/main.component';
 import { SocialsComponent } from './components/socials/socials.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './modules/material/material.module';
+import { FrameComponent } from './components/frame/frame.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    SocialsComponent
+    SocialsComponent,
+    FrameComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
+import { FrameComponent } from 'src/app/components/frame/frame.component';
 
 declare let testFunc: any;
 
@@ -48,7 +50,9 @@ export class MainComponent implements OnInit, OnDestroy {
   mintBtn = 'Mint now';
   mintIsStarted: boolean = false;
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
 
@@ -80,6 +84,14 @@ export class MainComponent implements OnInit, OnDestroy {
         this.slides[index + 1].active = true;
       }
     }, 3000);
+  }
+
+  openFrame() {
+    this.dialog.open(FrameComponent, {
+      width: '600px',
+      height: '600px',
+      data: {}
+    }).afterClosed().subscribe(r => {});
   }
 
   mintCalculate() {

@@ -1,5 +1,6 @@
 @import '~src/assets/fonts/orbitron/orbitronFont.scss';
 @import '~src/assets/fonts/manrope/manropeFont.scss';
+@import '~@angular/material/theming';
 
 html,
 body {
@@ -51,6 +52,13 @@ body {
   opacity: 0;
 }
 
+.mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 15px !important;
+  background: none !important;
+  overflow: hidden;
+}
+
 a {
   text-decoration: none;
 }
@@ -60,3 +68,5 @@ a {
     overflow: auto;
   }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
