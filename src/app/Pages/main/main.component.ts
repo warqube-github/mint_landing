@@ -11,6 +11,7 @@ interface ISlide {
 }
 
 interface ITime {
+  day?: string,
   hour: string,
   minutes: string,
   seconds: string
@@ -42,6 +43,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   timeInterval: any;
   mintTime: ITime = {
+    day: '',
     hour: '',
     minutes: '',
     seconds: ''
@@ -99,28 +101,39 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   startMintCalculate() {
-    // let startMint = new Date(2022, 11, 29, 4, 8);
-    let startMint = new Date(2022, 11, 29, 14, 0);
-    let endTimer = new Date(Number(moment.utc().format('YYYY')), Number(moment.utc().format('MM')) - 1, Number(moment.utc().format('DD')), Number(moment.utc().format('HH')), Number(moment.utc().format('mm'))).getTime();
+    // let startMint = new Date(2023, 0, 9, 3, 30);
+    let startMint = new Date(2023, 0, 12, 14, 0);
+    let curTimeUtc = new Date(Number(moment.utc().format('YYYY')), Number(moment.utc().format('MM')) - 1, Number(moment.utc().format('DD')), Number(moment.utc().format('HH')), Number(moment.utc().format('mm'))).getTime();
+    console.log('StartMint Test', moment(startMint).format('YYYY-MM-DD HH:mm:ss'));
+    console.log('EndTimer', moment(curTimeUtc).format('YYYY-MM-DD HH:mm:ss'));
+    console.log('-------------------------');
 
 
-    if (endTimer >= (startMint.getTime())) {
+    if (curTimeUtc >= (startMint.getTime())) {
       clearInterval(this.timeInterval);
       this.startMint();
     }
 
-    let diffHour = moment(moment(startMint).diff(moment.utc())).format('HH');;
-    let diffMinutes = moment(moment(startMint).diff(moment.utc())).format('mm');
-    let diffSeconds = moment(moment(startMint).diff(moment.utc())).format('ss');
+    let diffTime = moment(moment(startMint).diff(moment.utc()));
+
+    // let diffHour = moment(moment(startMint).diff(moment.utc())).format('HH');
+    // let diffMinutes = moment(moment(startMint).diff(moment.utc())).format('mm');
+    // let diffSeconds = moment(moment(startMint).diff(moment.utc())).format('ss');
+
+    // let diffHour = moment(diffTime).format('HH');
+    // let diffMinutes = moment(diffTime).format('mm');
+    // let diffSeconds = moment(diffTime).format('ss');
+
     this.mintTime = {
-      hour: diffHour,
-      minutes: diffMinutes,
-      seconds: diffSeconds
+      day: (Number(moment(diffTime).format('DD')) - 1).toString(),
+      hour: moment(diffTime).format('HH'),
+      minutes: moment(diffTime).format('mm'),
+      seconds: moment(diffTime).format('ss')
     };
   }
 
   startMint() {
-    this.mintBtn = 'mint is live';
+    // this.mintBtn = 'mint is live';
     this.mintIsStarted = true;
   }
 
