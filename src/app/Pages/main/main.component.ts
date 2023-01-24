@@ -1,3 +1,4 @@
+import { MainService } from './../../services/main.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
@@ -38,7 +39,7 @@ export class MainComponent implements OnInit, OnDestroy {
   infoOpen: boolean = true;
 
   percent: number = 0;
-  mintCount: number = 0;
+  mintCount: number = 115;
   maxMint: number = 2500;
 
   timeInterval: any;
@@ -54,15 +55,19 @@ export class MainComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
+    private service: MainService
   ) { }
 
   ngOnInit(): void {
 
-    // try {
-    //   testFunc();
-    // } catch (error) {
-    //   console.log('Error', error);
-    // }
+    //TODO Получение количества минта
+    // setInterval(() => {
+    //   this.service.getMintCount().subscribe((res: any) => {
+    //     console.log('REsponse get Mint Count === ', res);
+    //     this.mintCount = res.count;
+    //     this.mintCalculate();
+    //   });
+    // }, 1 * (60 * 1000));
 
     this.startMintCalculate();
     this.timeInterval = setInterval(() => {
@@ -89,6 +94,10 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   openFrame() {
+    if (!this.mintIsStarted) {
+      return;
+    }
+
     this.dialog.open(FrameComponent, {
       width: '600px',
       height: '600px',
@@ -106,30 +115,32 @@ export class MainComponent implements OnInit, OnDestroy {
     // let startWL = new Date(2023, 0, 9, 4, 19);
     // let startPublic = new Date(2023, 0, 9, 4, 20).getTime();
 
-    let startPartners = new Date(2023, 0, 12, 8, 0).getTime();
-    let startOG = new Date(2023, 0, 12, 13, 30).getTime();
-    let startWL = new Date(2023, 0, 12, 14, 0);
-    let startPublic = new Date(2023, 0, 12, 16, 0).getTime();
+    // let startPartners = new Date(2023, 0, 12, 8, 0).getTime();
+    // let startOG = new Date(2023, 0, 12, 13, 30).getTime();
+    let startWL = new Date(2023, 0, 25, 14, 0);
+    let startPublic = new Date(2023, 0, 25, 15, 0).getTime();
 
 
     let curTimeUtc = new Date(Number(moment.utc().format('YYYY')), Number(moment.utc().format('MM')) - 1, Number(moment.utc().format('DD')), Number(moment.utc().format('HH')), Number(moment.utc().format('mm'))).getTime();
 
-    if (curTimeUtc >= startPartners) {
-      this.mintBtn = 'MINT PARTNERS';
-    }
+    // if (curTimeUtc >= startPartners) {
+    //   this.mintBtn = 'MINT PARTNERS';
+    // }
 
-    if (curTimeUtc >= startOG) {
-      this.mintBtn = 'MINT OG';
-    }
+    // if (curTimeUtc >= startOG) {
+    //   this.mintBtn = 'MINT OG';
+    // }
 
     if (curTimeUtc >= (startWL.getTime())) {
       this.mintIsStarted = true;
+
       this.mintBtn = 'MINT WL';
     }
 
     if (curTimeUtc >= startPublic) {
+
       clearInterval(this.timeInterval);
-      this.mintBtn = 'MINT PUBLIC';
+      this.mintBtn = 'MINT NOW';
     }
 
     let diffTime = moment(moment(startWL).diff(moment.utc()));
