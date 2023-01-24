@@ -110,10 +110,6 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   startMintCalculate() {
-    // let startPartners = new Date(2023, 0, 9, 4, 17).getTime();
-    // let startOG = new Date(2023, 0, 9, 4, 18).getTime();
-    // let startWL = new Date(2023, 0, 9, 4, 19);
-    // let startPublic = new Date(2023, 0, 9, 4, 20).getTime();
 
     // let startPartners = new Date(2023, 0, 12, 8, 0).getTime();
     // let startOG = new Date(2023, 0, 12, 13, 30).getTime();
@@ -122,14 +118,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
 
     let curTimeUtc = new Date(Number(moment.utc().format('YYYY')), Number(moment.utc().format('MM')) - 1, Number(moment.utc().format('DD')), Number(moment.utc().format('HH')), Number(moment.utc().format('mm'))).getTime();
-
-    // if (curTimeUtc >= startPartners) {
-    //   this.mintBtn = 'MINT PARTNERS';
-    // }
-
-    // if (curTimeUtc >= startOG) {
-    //   this.mintBtn = 'MINT OG';
-    // }
 
     if (curTimeUtc >= (startWL.getTime())) {
       this.mintIsStarted = true;
