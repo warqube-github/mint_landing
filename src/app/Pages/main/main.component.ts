@@ -39,7 +39,7 @@ export class MainComponent implements OnInit, OnDestroy {
   infoOpen: boolean = true;
 
   percent: number = 0;
-  mintCount: number = 115;
+  mintCount: number = 0;
   maxMint: number = 2500;
 
   timeInterval: any;

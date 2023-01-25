@@ -1,0 +1,64 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.admin-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: auto;
+
+    input {
+      width: 150px;
+      background-color: transparent;
+      border: 1px solid #23BDEE;
+      border-radius: 10px;
+      height: 30px;
+      margin-bottom: 10px;
+      color: white;
+      padding-left: 5px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 150px;
+      height: 30px;
+
+      font-family: 'Orbitron';
+      font-weight: 500;
+      font-size: 15;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    
+      border-radius: 10px;
+      text-decoration: none;
+    
+      background-image: url('~src/assets/images/back-blue.png');
+    
+      user-select: none;
+      cursor: pointer;
+      transition: all .2s ease;
+    
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

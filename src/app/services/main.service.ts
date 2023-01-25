@@ -14,4 +14,14 @@ export class MainService {
     let url = 'mintInfo/63c8f8bca36c314c39abf38f';
     return this.http.get(this.apiUrl + url, {});
   }
+
+  updateMintCount(count: number) {
+    let url = 'mintInfo/';
+    let obj = {
+      "_id": "63c8f8bca36c314c39abf38f",
+      "count": count,
+      "__v": 0
+    }
+    return this.http.put(this.apiUrl + url, obj);
+  }
 }

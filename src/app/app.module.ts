@@ -9,13 +9,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
 import { FrameComponent } from './components/frame/frame.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './Pages/admin/admin.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     SocialsComponent,
-    FrameComponent
+    FrameComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
