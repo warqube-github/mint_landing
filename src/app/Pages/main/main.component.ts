@@ -61,13 +61,10 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     //TODO Получение количества минта
-    // setInterval(() => {
-    //   this.service.getMintCount().subscribe((res: any) => {
-    //     console.log('REsponse get Mint Count === ', res);
-    //     this.mintCount = res.count;
-    //     this.mintCalculate();
-    //   });
-    // }, 1 * (60 * 1000));
+    this.getMintCountInfo();
+    setInterval(() => {
+      this.getMintCountInfo();
+    }, 1 * (60 * 1000));
 
     this.startMintCalculate();
     this.timeInterval = setInterval(() => {
@@ -91,6 +88,14 @@ export class MainComponent implements OnInit, OnDestroy {
         this.slides[index + 1].active = true;
       }
     }, 3000);
+  }
+
+  getMintCountInfo() {
+    this.service.getMintCount().subscribe((res: any) => {
+      console.log('REsponse get Mint Count === ', res);
+      this.mintCount = res.count;
+      this.mintCalculate();
+    });
   }
 
   openFrame() {
