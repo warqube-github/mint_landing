@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'mintAdmin', component: AdminComponent },
+  { path: 'madmin', component: AdminComponent },
   { path: '**', redirectTo: '' }
 ];
 

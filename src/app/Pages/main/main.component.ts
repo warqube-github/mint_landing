@@ -103,11 +103,11 @@ export class MainComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.dialog.open(FrameComponent, {
-      width: '600px',
-      height: '600px',
-      data: {}
-    }).afterClosed().subscribe(r => {});
+    // this.dialog.open(FrameComponent, {
+    //   width: '600px',
+    //   height: '600px',
+    //   data: {}
+    // }).afterClosed().subscribe(r => {});
   }
 
   mintCalculate() {
@@ -133,7 +133,7 @@ export class MainComponent implements OnInit, OnDestroy {
     if (curTimeUtc >= startPublic) {
 
       clearInterval(this.timeInterval);
-      this.mintBtn = 'MINT NOW';
+      this.mintBtn = 'MINT';
     }
 
     let diffTime = moment(moment(startWL).diff(moment.utc()));
